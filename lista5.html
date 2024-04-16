@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformador de Números</title>
+</head>
+<body>
+    <h2>Transformador de Números</h2>
+    <form id="inputForm">
+        <label for="numero">Digite um número:</label>
+        <input type="number" id="numero" name="numero">
+        <button type="button" onclick="transformarNumero()">Transformar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function transformarNumero() {
+            var numero = parseInt(document.getElementById('numero').value);
+
+            // Verifica se o número é par ou ímpar e realiza a transformação
+            if (numero % 2 === 0) {
+                // Se for par, transforma em ímpar adicionando 1
+                document.getElementById('resultado').innerText = "O número transformado é ímpar: " + (numero + 1);
+            } else {
+                // Se for ímpar, transforma em par subtraindo 1
+                document.getElementById('resultado').innerText = "O número transformado é par: " + (numero - 1);
+            }
+        }
+    </script>
+</body>
+</html>

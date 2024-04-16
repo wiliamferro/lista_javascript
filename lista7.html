@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picoleteria</title>
+</head>
+<body>
+    <h2>Selecione o sabor do picolé:</h2>
+    <form id="inputForm">
+        <label for="sabor">Escolha um sabor:</label>
+        <select id="sabor" name="sabor">
+            <option value="chocolate">Chocolate</option>
+            <option value="morango">Morango</option>
+            <option value="creme">Creme</option>
+            <option value="manga">Manga</option>
+            <option value="melancia">Melancia</option>
+            <option value="vanilla">Vanilla Ice</option>
+            <option value="ceuazul">Céu Azul</option>
+            <option value="brownie">Brownie</option>
+            <option value="hawaiano">Hawaiano</option>
+        </select>
+        <button type="button" onclick="calcularPreco()">Ver Preço</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularPreco() {
+            var saborSelecionado = document.getElementById('sabor').value;
+            var preco;
+
+            switch (saborSelecionado) {
+                case 'chocolate':
+                    preco = 1.50;
+                    break;
+                case 'morango':
+                case 'creme':
+                    preco = 2.50;
+                    break;
+                case 'manga':
+                    preco = 3.20;
+                    break;
+                case 'melancia':
+                    preco = 3.40;
+                    break;
+                case 'vanilla':
+                    preco = 3.00;
+                    break;
+                case 'ceuazul':
+                    preco = 3.60;
+                    break;
+                case 'brownie':
+                    preco = 4.00;
+                    break;
+                case 'hawaiano':
+                    preco = 5.00;
+                    break;
+                default:
+                    preco = 0.00; // Preço padrão para sabores não reconhecidos
+            }
+
+            document.getElementById('resultado').innerText = "O preço do picolé de " + saborSelecionado + " é R$ " + preco.toFixed(2);
+        }
+    </script>
+</body>
+</html>

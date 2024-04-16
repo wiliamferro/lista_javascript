@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balanço Financeiro Anual</title>
+</head>
+<body>
+    <h2>Balanço Financeiro Anual</h2>
+    <form id="inputForm">
+        <h3>Insira os ganhos e gastos de cada mês:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mês</th>
+                    <th>Ganho Bruto ($)</th>
+                    <th>Gastos ($)</th>
+                </tr>
+            </thead>
+            <tbody id="inputTableBody">
+                <!-- As entradas para cada mês serão adicionadas aqui dinamicamente -->
+            </tbody>
+        </table>
+        <button type="button" onclick="calcularBalanço()">Calcular Balanço</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function adicionarEntrada() {
+            var tableBody = document.getElementById('inputTableBody');
+            var month = tableBody.rows.length + 1;
+
+            var newRow = tableBody.insertRow();
+            newRow.innerHTML = `
+                <td>${month}</td>
+                <td><input type="number" class="ganho" value="0"></td>
+                <td><input type="number" class="gasto" value="0"></td>
+            `;
+        }
+
+        function calcularBalanço() {
+            var totalGanho = 0;
+            var totalGasto = 0;
+
+            var ganhos = document.getElementsByClassName('ganho');
+            var gastos = document.getElementsByClassName('gasto');
+
+            for (var i = 0; i < ganhos.length; i++) {
+                totalGanho += parseFloat(ganhos[i].value);
+                totalGasto += parseFloat(gastos[i].value);
+            }
+
+            var saldo = totalGanho - totalGasto;
+            var resultado = document.getElementById('resultado');
+
+            resultado.innerHTML = `
+                <h3>Balanço Financeiro Anual</h3>
+                <p>Ganho Bruto Anual: $${totalGanho}</p>
+                <p>Gastos Anuais: $${totalGasto}</p>
+                <p>Saldo Financeiro: $${saldo}</p>
+                <p>${saldo >= 0 ? 'A empresa teve lucro.' : 'A empresa teve prejuízo.'}</p>
+            `;
+        }
+
+        // Adiciona as entradas para cada mês
+        for (var i = 0; i < 12; i++) {
+            adicionarEntrada();
+        }
+    </script>
+</body>
+</html>
